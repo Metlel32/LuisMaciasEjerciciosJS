@@ -194,19 +194,36 @@
 // }
 
 
-//ejercicio 14
+// //ejercicio 14
+// let asterisco = '*'
+// console.log(asterisco);
+// for (let i = 0; i < 4; i++) {
+//     asterisco += '*'
+//     console.log(asterisco);
+// }
 
-// ejercicio 15
+// // ejercicio 15
+// let asterisco2 = "*****"
+// console.log(asterisco2);
+// for (let i = 4; i > 0; i--) {
+//     asterisco2 = asterisco2.substring(0, asterisco2.length -1)
+//     console.log(asterisco2);
+// }
+
 
 // ejercicio 16
-let array16 = [101,26,37,1011,27,36,45,1210,303,9875]
+let array16 = [101,102,37,1011,27,36,45,1210,303,9875]
 let arrayOrdenado = []
 for (let i = 0; i < array16.length; i++) {
     const element = array16[i];
-    if(element>=arrayOrdenado[i]){
+    if(element>=arrayOrdenado.length){
         arrayOrdenado.push(element)
-    }else{
-        arrayOrdenado.unshift(element)
     }
+
+    if(element<arrayOrdenado[0]){
+        arrayOrdenado.unshift(element)
+        arrayOrdenado.pop()
+    }
+
 }
 console.log(arrayOrdenado);
