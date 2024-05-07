@@ -220,10 +220,7 @@ for (let i = 0; i < array16.length; i++) {
         arrayOrdenado.push(element)
     }
 
-    if(element<arrayOrdenado[0]){
-        arrayOrdenado.unshift(element)
-        arrayOrdenado.pop()
-    }
+    
 
 }
 console.log(arrayOrdenado);
