@@ -220,7 +220,5 @@ for (let i = 0; i < array16.length; i++) {
         arrayOrdenado.push(element)
     }
 
-    
-
 }
 console.log(arrayOrdenado);
