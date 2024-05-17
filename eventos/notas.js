@@ -5,7 +5,7 @@ arrayNotas[0] = {
     id: 1,
     titulo: " sacar la basura",
     texto: "si mi mama me reta no lo hago",
-    realizada: true
+    realizada: false
 }
 
 let idGlobal = arrayNotas[0].id
@@ -43,6 +43,7 @@ function pintarNotas(padre, tarjeta ) {
 function marcarRealizada(idObjeto){
     if (arrayNotas[idObjeto-1].realizada == true){
         arrayNotas[idObjeto-1].realizada = false
+    
     }else{
         arrayNotas[idObjeto-1].realizada = true
     }
@@ -108,7 +109,6 @@ function limpiarInput(){
 
 //filtrar array por realizados
 let checkbox = document.querySelector(".checked")
-
 checkbox.addEventListener('change', (evento)=> {
     let arrayRealizadas = arrayNotas.filter(ele => ele.realizada === true)
     contenedorNotas.innerHTML = ""
@@ -144,30 +144,29 @@ buscar.addEventListener("keyup", (e) => {
 })
 
 
-// // Función para manejar cambios en el checkbox
-// let checkbox = document.querySelector(".checked")
 
-// checkbox.addEventListener('change', (evento) => {
-//     actualizarNotas();
-// });
+function aplicarFiltros() {
+    let textoBusqueda = buscar.value.trim().toLowerCase()
+    let mostrarRealizadas = checkbox.checked
 
-// // Función para manejar cambios en el input de búsqueda
-// let buscar = document.getElementById("buscar")
-// buscar.addEventListener("keyup", (e) => {
-//     actualizarNotas();
-// });
+    let notasFiltradas = arrayNotas.filter(nota => {
+        let cumpleFiltroTexto = nota.titulo.toLowerCase().includes(textoBusqueda) || nota.texto.toLowerCase().includes(textoBusqueda)
+        let cumpleFiltroRealizadas = mostrarRealizadas ? nota.realizada : true
+        return cumpleFiltroTexto && cumpleFiltroRealizadas
+    });
 
-// // Función para actualizar las notas según los filtros
-// function actualizarNotas() {
-//     let textoBusqueda = buscar.value.toLowerCase();
-//     let soloRealizadas = checkbox.checked;
+    // Limpiar el contenedor antes de mostrar las notas filtradas
+    contenedorNotas.innerHTML = ""
 
-//     let notasFiltradas = arrayNotas.filter(nota => {
-//         let coincideTexto = nota.titulo.toLowerCase().includes(textoBusqueda) || nota.texto.toLowerCase().includes(textoBusqueda);
-//         return soloRealizadas ? nota.realizada && coincideTexto : coincideTexto;
-//     });
+    // Mostrar las notas filtradas
+    notasFiltradas.forEach(nota => {
+        pintarNotas(contenedorNotas, nota)
+    });
+}
 
+checkbox.addEventListener('change', aplicarFiltros)
 
+buscar.addEventListener("keyup", aplicarFiltros)
 
 
 
